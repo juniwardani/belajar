@@ -1,13 +1,11 @@
 // app/artikel/page.tsx
 
-import Link from 'next/link';
 import type { Metadata } from 'next';
 import Hero from '@/components/Hero/Hero';
 
 import { 
   Calendar, 
   User, 
-  ArrowRight,
   Search,
   ChevronLeft,
   ChevronRight
@@ -35,7 +33,7 @@ export default function ArtikelPage() {
               {featuredArtikel.map((artikel) => (
                 <article
                   key={artikel.id}
-                  className="group bg-white rounded-xl sm:rounded-2xl border border-green-200 overflow-hidden shadow-sm hover:shadow-xl transition-all duration-300 flex flex-col"
+                  className="group bg-white rounded-xl sm:rounded-2xl border border-green-200 overflow-hidden shadow-sm hover:shadow-md transition-all duration-300 flex flex-col"
                 >
                   {/* Content */}
                   <div className="p-4 sm:p-5 flex-1 flex flex-col">
@@ -51,23 +49,13 @@ export default function ArtikelPage() {
                       </span>
                     </div>
 
-                    <h3 className="text-sm sm:text-base font-bold text-slate-900 group-hover:text-green-700 transition-colors line-clamp-2 leading-snug mb-2">
+                    <h3 className="text-sm sm:text-base font-bold text-slate-900 leading-snug mb-2">
                       {artikel.title}
                     </h3>
 
-                    <p className="text-slate-600 text-xs sm:text-sm line-clamp-3 leading-relaxed flex-1">
+                    <p className="text-slate-600 text-xs sm:text-sm line-clamp-4 leading-relaxed flex-1">
                       {artikel.summary}
                     </p>
-
-                    <div className="mt-4 pt-3 border-t border-green-100">
-                      <Link
-                        href={`/artikel/${artikel.slug}`}
-                        className="inline-flex items-center gap-1 text-xs sm:text-sm font-bold text-green-700 hover:text-green-800 transition-colors"
-                      >
-                        <span>Baca Selengkapnya</span>
-                        <ArrowRight className="w-3.5 h-3.5 group-hover:translate-x-1 transition-transform" />
-                      </Link>
-                    </div>
                   </div>
                 </article>
               ))}
@@ -89,7 +77,7 @@ export default function ArtikelPage() {
             </div>
           )}
 
-          {/* Pagination UI (Tampil jika jumlah artikel > 6) */}
+          {/* Pagination UI */}
           {featuredArtikel.length > 6 && (
             <div className="mt-8 sm:mt-12 flex items-center justify-center gap-1.5 sm:gap-2">
               <button className="p-2 sm:px-3 sm:py-2 text-xs sm:text-sm font-medium text-slate-600 hover:text-green-700 border border-green-200 rounded-lg hover:bg-green-50 transition-colors flex items-center gap-1">

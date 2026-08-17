@@ -8,16 +8,15 @@ import Subprofil from '@/components/Subprofil/Subprofil';
 import {
   Users,
   User,
-  Filter,
   Search,
   Crown,
   Star,
   Shield,
   Briefcase,
   UserCheck,
-  ChevronRight,
+  X,
 } from 'lucide-react';
-import { pengurusData, pengurusCategories, type Pengurus } from '@/data/pengurus';
+import { pengurusData, pengurusCategories } from '@/data/pengurus';
 
 export default function PengurusPage() {
   const [selectedCategory, setSelectedCategory] = useState('semua');
@@ -39,26 +38,13 @@ export default function PengurusPage() {
         .filter((struktur) => struktur.members.length > 0);
     }
 
-    // Filter pencarian
-    if (searchQuery.trim()) {
-      const query = searchQuery.toLowerCase();
-      filtered = filtered
-        .map((struktur) => ({
-          ...struktur,
-          members: struktur.members.filter(
-            (member) =>
-              member.name.toLowerCase().includes(query) ||
-              member.position.toLowerCase().includes(query) ||
-              (member.description?.toLowerCase() || '').includes(query)
-          ),
-        }))
-        .filter((struktur) => struktur.members.length > 0);
-    }
+
+
 
     return filtered;
   }, [selectedCategory, searchQuery]);
 
-  // Total anggota
+  // Total anggota terdaftar
   const totalMembers = useMemo(() => {
     return pengurusData.reduce((acc, struktur) => acc + struktur.members.length, 0);
   }, []);
@@ -67,138 +53,81 @@ export default function PengurusPage() {
   const getCategoryIcon = (categoryId: string) => {
     switch (categoryId) {
       case 'utama':
-        return <Crown className="w-5 h-5 text-yellow-500" />;
+        return <Crown className="w-4 h-4 sm:w-5 sm:h-5 text-yellow-400" />;
       case 'mustasyar':
-        return <Star className="w-5 h-5 text-purple-500" />;
+        return <Star className="w-4 h-4 sm:w-5 sm:h-5 text-purple-300" />;
       case 'syuriyah':
-        return <Shield className="w-5 h-5 text-blue-500" />;
+        return <Shield className="w-4 h-4 sm:w-5 sm:h-5 text-blue-300" />;
       case 'tanfidziyah':
-        return <Briefcase className="w-5 h-5 text-green-600" />;
+        return <Briefcase className="w-4 h-4 sm:w-5 sm:h-5 text-emerald-300" />;
       case 'awan':
-        return <UserCheck className="w-5 h-5 text-orange-500" />;
+        return <UserCheck className="w-4 h-4 sm:w-5 sm:h-5 text-orange-300" />;
       default:
-        return <Users className="w-5 h-5 text-green-600" />;
-    }
-  };
-
-  // Badge warna untuk setiap kategori
-  const getCategoryBadgeColor = (category: string) => {
-    switch (category) {
-      case 'utama':
-        return 'bg-yellow-100 text-yellow-800 border-yellow-200';
-      case 'mustasyar':
-        return 'bg-purple-100 text-purple-800 border-purple-200';
-      case 'syuriyah':
-        return 'bg-blue-100 text-blue-800 border-blue-200';
-      case 'tanfidziyah':
-        return 'bg-green-100 text-green-800 border-green-200';
-      case 'awan':
-        return 'bg-orange-100 text-orange-800 border-orange-200';
-      default:
-        return 'bg-slate-100 text-slate-800 border-slate-200';
+        return <Users className="w-4 h-4 sm:w-5 sm:h-5 text-white" />;
     }
   };
 
   return (
     <>
-      <Hero
-        title="Struktur Pengurus PCNU"
-        description="Susunan Pengurus Cabang Nahdlatul Ulama Kabupaten Kotabaru Masa Khidmat 2025–2030"
-      />
+      <Hero title="Struktur Pengurus PCNU" />
       <Subprofil />
 
-      {/* Filter & Search Section */}
-      <section className="py-6 bg-white border-b border-green-200/50 sticky top-0 z-10 backdrop-blur-sm bg-white/95">
+      {/* Pengurus List Section */}
+      <section className="py-8 sm:py-12 lg:py-16 bg-green-50/30 min-h-[60vh]">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="flex flex-col sm:flex-row items-center justify-between gap-4">
-            {/* Categories Filter */}
-            <div className="flex flex-wrap items-center gap-2 w-full sm:w-auto">
-              <Filter className="w-4 h-4 text-green-600 shrink-0" />
-              {pengurusCategories.map((category) => (
-                <button
-                  key={category.id}
-                  onClick={() => setSelectedCategory(category.id)}
-                  className={`px-3 py-1.5 text-xs font-semibold rounded-full transition-all ${
-                    selectedCategory === category.id
-                      ? 'bg-green-700 text-white'
-                      : 'bg-green-100 text-green-700 hover:bg-green-200'
-                  }`}
-                >
-                  {category.label}
-                </button>
-              ))}
-            </div>
-
-            {/* Search Bar */}
-            <div className="relative w-full sm:w-64">
-              <Search className="absolute left-3 top-1/2 -translate-y-1/2 w-4 h-4 text-slate-400" />
-              <input
-                type="text"
-                placeholder="Cari pengurus..."
-                value={searchQuery}
-                onChange={(e) => setSearchQuery(e.target.value)}
-                className="w-full pl-9 pr-4 py-2 text-sm border border-green-200 rounded-full focus:outline-none focus:ring-2 focus:ring-green-500 focus:border-transparent"
-              />
-            </div>
-          </div>
-        </div>
-      </section>
-
-      {/* Pengurus List */}
-      <section className="py-12 sm:py-16 bg-green-50/30 min-h-[60vh]">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          {/* Counter */}
-          <div className="mb-8 flex items-center justify-between flex-wrap gap-2">
-            <span className="text-xs text-slate-500 bg-white px-3 py-1 rounded-full border border-green-200">
-              Masa Khidmat 2025–2030
-            </span>
-          </div>
+          
+          {/* Controls Bar: Filter & Search Input */}
+          
 
           {/* Grid Struktur */}
-          <div className="space-y-8">
+          <div className="space-y-6 sm:space-y-8">
             {filteredData.map((struktur) => (
               <div
                 key={struktur.id}
-                className="bg-white rounded-2xl border border-green-200 overflow-hidden shadow-sm hover:shadow-md transition-shadow"
+                className="bg-white rounded-xl sm:rounded-2xl border border-green-200 overflow-hidden shadow-sm hover:shadow-md transition-shadow"
               >
                 {/* Header Struktur */}
-                <div className="bg-gradient-to-r from-green-700 to-green-600 px-6 py-4 flex items-center justify-between">
+                <div className="bg-gradient-to-r from-green-700 to-green-600 p-4 sm:px-6 sm:py-4 flex flex-col sm:flex-row sm:items-center justify-between gap-3">
                   <div className="flex items-center gap-3">
-                    <div className="w-10 h-10 bg-white/20 rounded-xl flex items-center justify-center">
+                    <div className="w-9 h-9 sm:w-10 sm:h-10 bg-white/20 rounded-lg sm:rounded-xl flex items-center justify-center shrink-0">
                       {getCategoryIcon(struktur.members[0]?.category || '')}
                     </div>
                     <div>
-                      <h3 className="text-white font-bold text-lg">
+                      <h3 className="text-white font-bold text-base sm:text-lg leading-snug">
                         {struktur.name}
                       </h3>
                       {struktur.description && (
-                        <p className="text-green-100 text-sm">
+                        <p className="text-green-100 text-xs sm:text-sm mt-0.5">
                           {struktur.description}
                         </p>
                       )}
                     </div>
                   </div>
-                  <span className="bg-white/20 text-white text-xs font-semibold px-3 py-1 rounded-full">
+
+                  <span className="self-start sm:self-auto bg-white/20 text-white text-[11px] sm:text-xs font-semibold px-2.5 sm:px-3 py-1 rounded-full whitespace-nowrap">
                     {struktur.members.length} Anggota
                   </span>
                 </div>
 
                 {/* Members Grid */}
-                <div className="p-6 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-4">
+                <div className="p-4 sm:p-6 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-3 sm:gap-4">
                   {struktur.members.map((member) => (
                     <div
                       key={member.id}
-                      className="flex items-start gap-3 p-3 rounded-xl border border-green-100 hover:border-green-300 hover:bg-green-50/50 transition-all group"
+                      className="flex items-start gap-3 p-3 rounded-xl border border-green-100 hover:border-green-300 hover:bg-green-50/50 transition-all group min-w-0"
                     >
-                      <div className="w-10 h-10 bg-green-100 rounded-full flex items-center justify-center shrink-0 group-hover:bg-green-700 transition-colors">
-                        <User className="w-5 h-5 text-green-700 group-hover:text-white transition-colors" />
+                      <div className="w-9 h-9 sm:w-10 sm:h-10 bg-green-100 rounded-full flex items-center justify-center shrink-0 group-hover:bg-green-700 transition-colors">
+                        <User className="w-4 h-4 sm:w-5 sm:h-5 text-green-700 group-hover:text-white transition-colors" />
                       </div>
                       <div className="min-w-0 flex-1">
-                        <p className="text-sm font-semibold text-slate-900 leading-tight">
+                        <p className="text-xs sm:text-sm font-semibold text-slate-900 leading-snug break-words">
                           {member.name}
                         </p>
+                        <p className="text-[11px] sm:text-xs text-green-700 font-medium mt-0.5 break-words">
+                          {member.position}
+                        </p>
                         {member.description && (
-                          <p className="text-[11px] text-slate-500 mt-1 leading-tight">
+                          <p className="text-[10px] sm:text-[11px] text-slate-500 mt-0.5 leading-tight break-words">
                             {member.description}
                           </p>
                         )}
@@ -212,18 +141,28 @@ export default function PengurusPage() {
 
           {/* Empty State */}
           {filteredData.length === 0 && (
-            <div className="text-center py-16">
-              <div className="w-20 h-20 bg-green-100 rounded-full flex items-center justify-center mx-auto mb-4">
-                <Search className="w-10 h-10 text-green-400" />
+            <div className="text-center py-12 sm:py-16 bg-white rounded-2xl border border-green-200 p-6">
+              <div className="w-16 h-16 sm:w-20 sm:h-20 bg-green-100 rounded-full flex items-center justify-center mx-auto mb-4">
+                <Search className="w-8 h-8 sm:w-10 sm:h-10 text-green-600" />
               </div>
-              <h3 className="text-xl font-bold text-slate-700 mb-2">
+              <h3 className="text-lg sm:text-xl font-bold text-slate-800 mb-1">
                 Pengurus Tidak Ditemukan
               </h3>
-              <p className="text-slate-500">
-                Tidak ada pengurus yang sesuai dengan filter atau pencarian Anda.
+              <p className="text-xs sm:text-sm text-slate-500 max-w-sm mx-auto mb-4">
+                Tidak ada pengurus yang sesuai dengan filter atau kata kunci pencarian Anda.
               </p>
+              <button
+                onClick={() => {
+                  setSelectedCategory('semua');
+                  setSearchQuery('');
+                }}
+                className="px-4 py-2 bg-green-700 text-white rounded-xl text-xs sm:text-sm font-semibold hover:bg-green-800 transition-colors shadow-sm"
+              >
+                Reset Filter
+              </button>
             </div>
           )}
+
         </div>
       </section>
     </>

@@ -37,7 +37,6 @@ export default function TentangPage() {
     <>
       <Hero
         title="Tentang PCNU Kotabaru"
-        description="Pengurus Cabang Nahdlatul Ulama Kabupaten Kotabaru – Bumi Saijaan"
       />
       <Subprofil />
 

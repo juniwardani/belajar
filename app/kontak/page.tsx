@@ -25,7 +25,6 @@ export default function KontakPage() {
     <>
       <Hero
         title="Hubungi Kami"
-        description="Sampaikan masukan, saran, atau pengaduan Anda kepada PCNU Kabupaten Kotabaru"
       />
 
       {/* Kontak Section + Google Maps */}

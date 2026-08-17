@@ -4,6 +4,7 @@ import { useState } from 'react';
 import Link from 'next/link';
 import { usePathname } from 'next/navigation';
 import { Menu, X, ChevronDown } from 'lucide-react';
+import Image from 'next/image';
 
 interface NavItem {
   name: string;
@@ -55,23 +56,20 @@ export default function Header() {
   };
 
   return (
-    <header className="sticky top-0 z-50 bg-gradient-to-r from-green-800 to-green-900 text-white shadow-lg">
+    <header className="sticky top-0 z-50 bg-emerald-950 border-t border-emerald-900 text-white shadow-lg">
       <nav className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex justify-between items-center h-16">
           {/* Logo NU */}
-          <Link href="/" className="flex items-center gap-3 shrink-0 group">
-            <div className="w-10 h-10 bg-green-500 rounded-full flex items-center justify-center text-white font-black text-sm border-2 border-green-300 group-hover:border-green-200 transition-all shadow-lg shadow-green-500/20">
-              NU
-            </div>
-            <div className="hidden sm:block">
-              <span className="font-bold text-white text-sm leading-tight block group-hover:text-green-200 transition-colors">
-                PCNU Kotabaru
-              </span>
-              <span className="text-[10px] text-green-300 font-semibold block -mt-0.5">
-                Nahdlatul Ulama · Bumi Sa-Ijaan
-              </span>
-            </div>
-          </Link>
+          <div className="flex items-center gap-3">
+            <img
+              src="/logo.jpg"
+              alt="Logo NU Kotabaru"
+              className="h-8 sm:h-10 w-auto object-contain"
+            />
+            <span className="text-lg sm:text-xl font-bold text-white tracking-tight">
+              PCNU KOTABARU
+            </span>
+          </div>
 
           {/* Desktop Navigation */}
           <div className="hidden md:flex items-center gap-1">

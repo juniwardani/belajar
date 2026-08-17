@@ -9,7 +9,6 @@ import {
   Building2,
   Users,
   Search,
-  Filter,
   BookOpen,
   Briefcase,
   Heart,
@@ -17,13 +16,11 @@ import {
   Landmark,
   Shield,
   Music,
-  HandHeart,
   Scale,
   Home,
   Stethoscope,
   Cloud,
   Globe,
-  ChevronRight,
 } from 'lucide-react';
 import { lembagaData, banomData } from '@/data/lembaga-banom';
 
@@ -169,7 +166,6 @@ export default function LembagaBanomPage() {
     <>
       <Hero
         title="Lembaga & Banom NU"
-        description="Perangkat departementasi dan organisasi semi-otonom Nahdlatul Ulama dalam menjalankan program dan pengabdian kepada umat"
       />
       <Subprofil />
 
@@ -178,62 +174,32 @@ export default function LembagaBanomPage() {
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="flex flex-col sm:flex-row items-center justify-between gap-4">
             {/* Tab Buttons */}
-            <div className="flex items-center gap-2 w-full sm:w-auto">
-              <div className="flex rounded-xl bg-green-50 p-1 border border-green-200 w-full sm:w-auto">
-                <button
-                  onClick={() => setActiveTab('lembaga')}
-                  className={`flex-1 sm:flex-none px-4 py-2 text-sm font-semibold rounded-lg transition-all flex items-center justify-center gap-2 ${
-                    activeTab === 'lembaga'
-                      ? 'bg-green-700 text-white shadow-md'
-                      : 'text-green-700 hover:bg-green-100'
-                  }`}
-                >
-                  <Building2 className="w-4 h-4" />
-                  Lembaga NU
-                  <span
-                    className={`text-xs px-2 py-0.5 rounded-full ${
+            <div className="w-full">
+              <div className="flex flex-col sm:flex-row gap-2 w-full">
+                  <button
+                    onClick={() => setActiveTab('lembaga')}
+                    className={`flex-1 px-4 py-3 text-sm font-semibold rounded-lg transition-all flex items-center justify-center gap-2 ${
                       activeTab === 'lembaga'
-                        ? 'bg-white/20 text-white'
-                        : 'bg-green-100 text-green-700'
+                        ? 'bg-green-700 text-white shadow-md'
+                        : 'bg-green-50 text-green-700 hover:bg-green-100 border border-green-200'
                     }`}
                   >
-                    {totalLembaga}
-                  </span>
-                </button>
-                <button
-                  onClick={() => setActiveTab('banom')}
-                  className={`flex-1 sm:flex-none px-4 py-2 text-sm font-semibold rounded-lg transition-all flex items-center justify-center gap-2 ${
-                    activeTab === 'banom'
-                      ? 'bg-green-700 text-white shadow-md'
-                      : 'text-green-700 hover:bg-green-100'
-                  }`}
-                >
-                  <Users className="w-4 h-4" />
-                  Banom NU
-                  <span
-                    className={`text-xs px-2 py-0.5 rounded-full ${
+                    <Building2 className="w-4 h-4" />
+                    Lembaga NU
+                  </button>
+                  <button
+                    onClick={() => setActiveTab('banom')}
+                    className={`flex-1 px-4 py-3 text-sm font-semibold rounded-lg transition-all flex items-center justify-center gap-2 ${
                       activeTab === 'banom'
-                        ? 'bg-white/20 text-white'
-                        : 'bg-green-100 text-green-700'
+                        ? 'bg-green-700 text-white shadow-md'
+                        : 'bg-green-50 text-green-700 hover:bg-green-100 border border-green-200'
                     }`}
                   >
-                    {totalBanom}
-                  </span>
-                </button>
+                    <Users className="w-4 h-4" />
+                    Banom NU
+                  </button>
+                </div>
               </div>
-            </div>
-
-            {/* Search Bar */}
-            <div className="relative w-full sm:w-64">
-              <Search className="absolute left-3 top-1/2 -translate-y-1/2 w-4 h-4 text-slate-400" />
-              <input
-                type="text"
-                placeholder={`Cari ${activeTab === 'lembaga' ? 'lembaga' : 'banom'}...`}
-                value={searchQuery}
-                onChange={(e) => setSearchQuery(e.target.value)}
-                className="w-full pl-9 pr-4 py-2 text-sm border border-green-200 rounded-full focus:outline-none focus:ring-2 focus:ring-green-500 focus:border-transparent"
-              />
-            </div>
           </div>
         </div>
       </section>
@@ -241,23 +207,6 @@ export default function LembagaBanomPage() {
       {/* Content */}
       <section className="py-12 sm:py-16 bg-green-50/30 min-h-[60vh]">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          {/* Counter & Description */}
-          <div className="mb-8 flex items-center justify-between flex-wrap gap-2">
-            <div>
-              <p className="text-sm text-slate-600">
-                Menampilkan{' '}
-                <span className="font-bold text-green-700">{filteredData.length}</span>{' '}
-                {activeTab === 'lembaga' ? 'lembaga' : 'banom'}
-              </p>
-            </div>
-            <div className="flex items-center gap-2">
-              <span className="text-xs text-slate-500 bg-white px-3 py-1 rounded-full border border-green-200">
-                {activeTab === 'lembaga' ? '18 Lembaga' : '14 Banom'}
-              </span>
-            </div>
-          </div>
-
-          {/* Deskripsi Singkat */}
           <div className="mb-8 bg-white rounded-2xl border border-green-200 p-6 shadow-sm">
             <div className="flex items-start gap-4">
               <div className="w-12 h-12 bg-green-100 rounded-xl flex items-center justify-center shrink-0">

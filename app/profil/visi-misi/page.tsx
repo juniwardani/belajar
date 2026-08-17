@@ -102,31 +102,28 @@ const visionMissionData = {
 export default function VisiMisiPage() {
   return (
     <>
-      <Hero
-        title="Visi & Misi PCNU"
-        description="Meneguhkan ajaran Islam Ahlussunnah wal Jama'ah An-Nahdliyah menuju masyarakat Kotabaru yang sejahtera, berkeadilan, dan berakhlakul karimah"
-      />
+      <Hero title="Visi & Misi PCNU" />
       <Subprofil />
 
       {/* Visi Section */}
-      <section className="py-12 sm:py-16 bg-white">
+      <section className="py-8 sm:py-12 lg:py-16 bg-white overflow-hidden">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="max-w-4xl mx-auto text-center">
             {/* Badge */}
-            <div className="inline-flex items-center gap-2 bg-green-100 text-green-700 px-4 py-2 rounded-full text-sm font-semibold mb-6">
-              <Eye className="w-5 h-5" />
+            <div className="inline-flex items-center gap-2 bg-green-100 text-green-700 px-3.5 sm:px-4 py-1.5 sm:py-2 rounded-full text-xs sm:text-sm font-semibold mb-4 sm:mb-6">
+              <Eye className="w-4 h-4 sm:w-5 sm:h-5 shrink-0" />
               <span>Visi</span>
             </div>
 
-            <h2 className="text-2xl sm:text-3xl font-bold text-slate-900 mb-2">
+            <h2 className="text-xl sm:text-3xl font-bold text-slate-900 mb-2 leading-tight">
               {visionMissionData.vision.title}
             </h2>
-            <p className="text-sm text-green-600 font-medium mb-6">
+            <p className="text-xs sm:text-sm text-green-600 font-medium mb-4 sm:mb-6">
               {visionMissionData.vision.subtitle}
             </p>
 
-            <div className="bg-gradient-to-br from-green-50 to-green-100/50 border border-green-200 rounded-2xl p-6 sm:p-8">
-              <p className="text-base sm:text-lg text-slate-700 leading-relaxed">
+            <div className="bg-gradient-to-br from-green-50 to-green-100/50 border border-green-200 rounded-xl sm:rounded-2xl p-4 sm:p-6 lg:p-8 shadow-sm">
+              <p className="text-sm sm:text-base lg:text-lg text-slate-700 leading-relaxed font-medium italic">
                 "{visionMissionData.vision.text}"
               </p>
             </div>
@@ -135,73 +132,75 @@ export default function VisiMisiPage() {
       </section>
 
       {/* Misi Section */}
-      <section className="py-12 sm:py-16 bg-green-50/30">
+      <section className="py-8 sm:py-12 lg:py-16 bg-green-50/30">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           {/* Header Misi */}
-          <div className="text-center mb-10">
-            <div className="inline-flex items-center gap-2 bg-green-700 text-white px-4 py-2 rounded-full text-sm font-semibold mb-4">
-              <Target className="w-5 h-5" />
+          <div className="text-center mb-8 sm:mb-12">
+            <div className="inline-flex items-center gap-2 bg-green-700 text-white px-3.5 sm:px-4 py-1.5 sm:py-2 rounded-full text-xs sm:text-sm font-semibold mb-3 sm:mb-4">
+              <Target className="w-4 h-4 sm:w-5 sm:h-5 shrink-0" />
               <span>7 Program Misi Strategis</span>
             </div>
-            <h2 className="text-2xl sm:text-3xl font-bold text-slate-900">
+            <h2 className="text-xl sm:text-3xl font-bold text-slate-900 leading-tight">
               Misi PCNU Kabupaten Kotabaru
             </h2>
-            <p className="text-slate-600 mt-2">
+            <p className="text-xs sm:text-sm text-slate-600 mt-1.5 sm:mt-2">
               Masa Khidmat 2025 – 2030
             </p>
           </div>
 
-          {/* Grid Misi */}
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-            {visionMissionData.missions.map((mission, index) => {
+          {/* Grid Misi: 1 Kolom (HP), 2 Kolom (Tablet/Laptop), 3 Kolom jika 7 Item (Desktop) */}
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-2 xl:grid-cols-2 gap-4 sm:gap-6">
+            {visionMissionData.missions.map((mission) => {
               const Icon = mission.icon;
               return (
                 <div
                   key={mission.id}
-                  className="group bg-white rounded-2xl border border-green-200 p-6 shadow-sm hover:shadow-xl transition-all duration-300 hover:border-green-400"
+                  className="group bg-white rounded-xl sm:rounded-2xl border border-green-200 p-4 sm:p-6 shadow-sm hover:shadow-xl transition-all duration-300 hover:border-green-400 flex flex-col justify-between"
                 >
-                  {/* Header Card */}
-                  <div className="flex items-start gap-4 mb-4">
-                    <div className="w-12 h-12 bg-green-100 rounded-xl flex items-center justify-center shrink-0 group-hover:bg-green-700 transition-colors duration-300">
-                      <Icon className="w-6 h-6 text-green-700 group-hover:text-white transition-colors duration-300" />
+                  <div>
+                    {/* Header Card */}
+                    <div className="flex items-start gap-3 sm:gap-4 mb-3 sm:mb-4">
+                      <div className="w-10 h-10 sm:w-12 sm:h-12 bg-green-100 rounded-lg sm:rounded-xl flex items-center justify-center shrink-0 group-hover:bg-green-700 transition-colors duration-300">
+                        <Icon className="w-5 h-5 sm:w-6 sm:h-6 text-green-700 group-hover:text-white transition-colors duration-300" />
+                      </div>
+                      <div className="min-w-0 flex-1">
+                        <span className="inline-block text-[10px] sm:text-xs font-bold text-green-700 bg-green-100 px-2 sm:px-2.5 py-0.5 rounded-full">
+                          Misi {String(mission.id).padStart(2, '0')}
+                        </span>
+                        <h3 className="text-sm sm:text-base font-bold text-slate-900 mt-1 group-hover:text-green-700 transition-colors leading-snug break-words">
+                          {mission.title}
+                        </h3>
+                      </div>
                     </div>
-                    <div>
-                      <span className="text-xs font-bold text-green-600 bg-green-100 px-2.5 py-0.5 rounded-full">
-                        Misi {String(mission.id).padStart(2, '0')}
-                      </span>
-                      <h3 className="text-base font-bold text-slate-900 mt-1 group-hover:text-green-700 transition-colors">
-                        {mission.title}
-                      </h3>
-                    </div>
-                  </div>
 
-                  {/* Points */}
-                  <ul className="space-y-2">
-                    {mission.points.map((point, idx) => (
-                      <li key={idx} className="flex gap-2 text-sm text-slate-600 leading-relaxed">
-                        <CheckCircle className="w-4 h-4 text-green-600 shrink-0 mt-0.5" />
-                        <span>{point}</span>
-                      </li>
-                    ))}
-                  </ul>
+                    {/* Points */}
+                    <ul className="space-y-2">
+                      {mission.points.map((point, idx) => (
+                        <li key={idx} className="flex gap-2 text-xs sm:text-sm text-slate-600 leading-relaxed">
+                          <CheckCircle className="w-4 h-4 text-green-600 shrink-0 mt-0.5" />
+                          <span className="break-words">{point}</span>
+                        </li>
+                      ))}
+                    </ul>
+                  </div>
                 </div>
               );
             })}
           </div>
 
           {/* Footer Pesan */}
-          <div className="mt-12 max-w-3xl mx-auto">
-            <div className="bg-green-700 text-white rounded-2xl p-6 sm:p-8 text-center">
-              <BookOpen className="w-8 h-8 mx-auto mb-3 text-green-200" />
-              <p className="text-sm sm:text-base leading-relaxed">
-                <span className="font-semibold">"Khairunnas anfa'uhum linnas"</span>
-                <br />
-                <span className="text-green-100">
+          <div className="mt-8 sm:mt-12 max-w-3xl mx-auto">
+            <div className="bg-green-700 text-white rounded-xl sm:rounded-2xl p-5 sm:p-8 text-center shadow-lg">
+              <BookOpen className="w-6 h-6 sm:w-8 sm:h-8 mx-auto mb-2 sm:mb-3 text-green-200 shrink-0" />
+              <p className="text-xs sm:text-base leading-relaxed">
+                <span className="font-semibold block sm:inline">"Khairunnas anfa'uhum linnas"</span>
+                <span className="hidden sm:inline"> — </span>
+                <span className="text-green-100 block sm:inline mt-1 sm:mt-0">
                   Sebaik-baik manusia adalah yang paling bermanfaat bagi orang lain.
                 </span>
               </p>
-              <div className="mt-4 pt-4 border-t border-green-600/50">
-                <p className="text-xs text-green-200">
+              <div className="mt-3 sm:mt-4 pt-3 sm:pt-4 border-t border-green-600/60">
+                <p className="text-[11px] sm:text-xs text-green-200 leading-normal">
                   Setiap kader NU adalah "santri jam'iyyah" yang mendapat doa dan keberkahan perjuangan
                 </p>
               </div>

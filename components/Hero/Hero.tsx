@@ -1,61 +1,30 @@
-import React from 'react';
-import Link from 'next/link';
-import { ReactNode } from 'react';
+import React, { ReactNode } from 'react';
+import Image from 'next/image';
 
 interface HeroProps {
   title: string;
-  subtitle?: string;
-  description?: string;
-  children?: ReactNode;
   className?: string;
-  withLogo?: boolean;
+  children?: ReactNode;
 }
 
 export default function Hero({
   title,
-  subtitle,
-  description,
-  children,
   className = '',
-  withLogo = false,
 }: HeroProps) {
   return (
-    <section className={`relative bg-gradient-to-r from-green-700 to-green-900 text-white py-16 sm:py-20 ${className}`}>
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
-        {/* Optional Logo */}
-        {withLogo && (
-          <div className="flex justify-center mb-4">
-            <div className="w-20 h-20 sm:w-24 sm:h-24 bg-green-500 rounded-full flex items-center justify-center border-4 border-green-300">
-              <span className="text-white font-bold text-3xl sm:text-4xl">NU</span>
-            </div>
-          </div>
-        )}
+    <section className={`relative overflow-hidden bg-gradient-to-br from-emerald-950 via-green-900 to-emerald-900 text-white py-10 sm:py-14 lg:py-16 ${className}`}>
+      {/* Ambient Glows & Dot Pattern Overlay */}
+      <div className="absolute inset-0 pointer-events-none">
+        <div className="absolute -top-24 -left-20 w-[350px] sm:w-[450px] h-[350px] sm:h-[450px] bg-emerald-500/20 rounded-full blur-3xl" />
+        <div className="absolute top-1/2 -right-20 w-[300px] sm:w-[350px] h-[300px] sm:h-[350px] bg-green-400/15 rounded-full blur-3xl" />
+        <div className="absolute inset-0 bg-[radial-gradient(#059669_1px,transparent_1px)] [background-size:24px_24px] opacity-15" />
+      </div>
 
+      <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center py-4 sm:py-6 lg:py-8">
         {/* Title */}
-        <h1 className={`font-black ${withLogo ? 'text-3xl sm:text-4xl md:text-5xl' : 'text-4xl sm:text-5xl'} mb-2`}>
+        <h1 className="text-2xl sm:text-4xl md:text-5xl lg:text-6xl font-black tracking-tight leading-snug sm:leading-tight text-white max-w-xs sm:max-w-2xl md:max-w-3xl lg:max-w-4xl mx-auto break-words">
           {title}
         </h1>
-
-        {/* Subtitle */}
-        {subtitle && (
-          <p className="text-lg sm:text-xl text-green-200">
-            {subtitle}
-          </p>
-        )}
-
-        {/* Description */}
-        {description && (
-          <p className="text-base sm:text-lg mt-3 max-w-2xl mx-auto text-green-100/90">
-            {description}
-          </p>
-        )}
-
-        {/* Children (optional: tags, buttons, dll) */}
-        {children && (
-          <div className="mt-4">
-            {children}
-          </div>
-        )}
       </div>
     </section>
   );

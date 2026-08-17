@@ -17,12 +17,14 @@ const navItems: NavItem[] = [
     name: 'Profil', 
     href: '/profil',
     submenu: [
-      { name: 'Sejarah NU', href: '/profil/sejarah' },
       { name: 'Visi & Misi', href: '/profil/visi-misi' },
       { name: 'Struktur Pengurus', href: '/profil/pengurus' },
+      { name: 'Lembaga & Banom', href: '/profil/lembaga-banom' },
+      { name: 'Tentang Kami', href: '/profil/tentang-kami' },
     ]
   },
   { name: 'Berita', href: '/berita' },
+  { name: 'Artikel', href: '/artikel' },
   { name: 'Galeri', href: '/galeri' },
   { name: 'Kontak', href: '/kontak' },
 ];

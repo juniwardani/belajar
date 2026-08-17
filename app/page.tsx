@@ -1,7 +1,19 @@
 import Image from 'next/image';
 import Link from 'next/link';
 import type { Metadata } from 'next';
-import { ArrowRight, Calendar, Clock, User, Target, HeartHandshake, Send, Users, BookOpen, Home } from 'lucide-react';
+import { 
+  ArrowRight, 
+  Calendar, 
+  Clock, 
+  User, 
+  Target, 
+  HeartHandshake, 
+  Send, 
+  Users, 
+  BookOpen, 
+  Home 
+} from 'lucide-react';
+import { leaderProfile, featuredNews, featuredGallery, featuredArtikel } from '@/data';
 
 export const metadata: Metadata = {
   title: 'Beranda | PCNU Kabupaten Kotabaru',
@@ -9,76 +21,7 @@ export const metadata: Metadata = {
     'Website Resmi Pengurus Cabang Nahdlatul Ulama (PCNU) Kabupaten Kotabaru, Kalimantan Selatan. Menebarkan Islam Rahmatan Lil Alamin, Membangun Masyarakat yang Berakhlakul Karimah.',
 };
 
-
-export default async function HomePage() {
-  // Data dummy untuk ditampilkan
-  const leaderProfile = {
-    name: 'KH. Ahmad Fauzi, M.Pd.I.',
-    position: 'Ketua PCNU Kabupaten Kotabaru',
-    image: '/images/leader.jpg',
-    quote: 'Dengan NU, kita jaga ukhuwah Islamiyah, wujudkan masyarakat Kotabaru yang beriman, bertakwa, dan berakhlak mulia.'
-  };
-
-  const featuredNews = [
-    {
-      id: 1,
-      title: 'PCNU Kotabaru Gelar Pengajian Akbar Menyambut Maulid Nabi',
-      summary: 'Pengurus Cabang Nahdlatul Ulama Kotabaru menggelar pengajian akbar dalam rangka memperingati Maulid Nabi Muhammad SAW...',
-      image: '/images/news1.jpg',
-      category: 'Keagamaan',
-      date: '15 September 2026',
-      readTime: '3 menit',
-      author: 'Tim Humas PCNU',
-      slug: 'pengajian-akbar-maulid-nabi'
-    },
-    {
-      id: 2,
-      title: 'Santunan Anak Yatim dan Dhuafa PCNU Kotabaru',
-      summary: 'PCNU Kotabaru menyalurkan santunan kepada anak yatim dan dhuafa di 12 kecamatan se-Kabupaten Kotabaru...',
-      image: '/images/news2.jpg',
-      category: 'Sosial',
-      date: '12 September 2026',
-      readTime: '2 menit',
-      author: 'Tim Humas PCNU',
-      slug: 'santunan-anak-yatim'
-    },
-    {
-      id: 3,
-      title: 'Pendidikan Kader NU: Penguatan Aswaja dan Nasionalisme',
-      summary: 'PCNU Kotabaru mengadakan pendidikan kader untuk memperkuat pemahaman Ahlussunnah Wal Jamaah dan nilai-nilai kebangsaan...',
-      image: '/images/news3.jpg',
-      category: 'Pendidikan',
-      date: '10 September 2026',
-      readTime: '2 menit',
-      author: 'Tim Humas PCNU',
-      slug: 'pendidikan-kader-nu'
-    }
-  ];
-
-  const featuredGallery = [
-    {
-      id: 1,
-      title: 'Pengajian Akbar di Masjid Agung Kotabaru',
-      image: '/images/gallery1.jpg',
-      category: 'Keagamaan',
-      date: '15 September 2026'
-    },
-    {
-      id: 2,
-      title: 'Santunan Anak Yatim PCNU Kotabaru',
-      image: '/images/gallery2.jpg',
-      category: 'Sosial',
-      date: '12 September 2026'
-    },
-    {
-      id: 3,
-      title: 'Silaturahmi dengan Tokoh Agama se-Kotabaru',
-      image: '/images/gallery3.jpg',
-      category: 'Silaturahmi',
-      date: '8 September 2026'
-    }
-  ];
-
+export default function HomePage() {
   return (
     <>
       {/* 1. Hero Section - PCNU Kotabaru */}
@@ -151,13 +94,13 @@ export default async function HomePage() {
               </div>
 
               <div className="pt-2">
-                <a
+                <Link
                   href="/profil"
                   className="inline-flex items-center px-6 py-3 bg-green-700 hover:bg-green-800 text-white font-bold rounded-lg transition-colors"
                 >
                   <span>Selengkapnya tentang Profil & Pengurus</span>
                   <ArrowRight className="w-4 h-4 ml-1.5" />
-                </a>
+                </Link>
               </div>
             </div>
 
@@ -259,48 +202,76 @@ export default async function HomePage() {
       </section>
 
       {/* 4. Compact Gallery Preview (3 Photo Cards) */}
-      <section className="py-12 sm:py-16 bg-green-50/40 border-b border-green-200/50">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="flex flex-col sm:flex-row items-start sm:items-end justify-between gap-4 mb-8">
-            <div>
-              <span className="text-xs font-bold text-green-800 tracking-wider uppercase bg-green-100 px-3 py-1 rounded-full">
-                DOKUMENTASI FOTO
-              </span>
-              <h2 className="text-2xl sm:text-3xl font-extrabold text-slate-950 mt-2">
-                Galeri Kegiatan PCNU Kotabaru
-              </h2>
+<section className="py-12 sm:py-16 bg-white border-b border-green-200/50">
+  <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+    <div className="flex flex-col sm:flex-row items-start sm:items-end justify-between gap-4 mb-8">
+      <div>
+        <span className="text-xs font-bold text-green-800 tracking-wider uppercase bg-green-100 px-3 py-1 rounded-full">
+          ARTIKEL TERKINI
+        </span>
+        <h2 className="text-2xl sm:text-3xl font-extrabold text-slate-950 mt-2">
+          Artikel & Opini PCNU Kotabaru
+        </h2>
+      </div>
+      <Link
+        href="/artikel"
+        className="inline-flex items-center gap-1 text-xs sm:text-sm font-bold text-green-700 hover:text-green-800 hover:underline"
+      >
+        <span>Lihat Semua Artikel</span>
+        <ArrowRight className="w-4 h-4" />
+      </Link>
+    </div>
+
+    <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+      {featuredArtikel.slice(0, 3).map((artikel) => (
+        <article
+          key={artikel.id}
+          className="group rounded-2xl bg-white border border-green-200 overflow-hidden shadow-xs hover:shadow-lg transition-all duration-300 flex flex-col justify-between"
+        >
+          {/* Category Badge - Tanpa Gambar */}
+          <div className="px-5 pt-5">
+            <div className="inline-block bg-green-700 text-white text-[10px] font-bold px-3 py-1 rounded-md uppercase">
+              {artikel.category}
             </div>
-            <Link
-              href="/galeri"
-              className="inline-flex items-center gap-1 text-xs sm:text-sm font-bold text-green-700 hover:text-green-800 hover:underline"
-            >
-              <span>Lihat Semua Foto</span>
-              <ArrowRight className="w-4 h-4" />
-            </Link>
           </div>
 
-          <div className="grid grid-cols-2 sm:grid-cols-3 gap-3 sm:gap-4">
-            {featuredGallery.map((item) => (
-              <div
-                key={item.id}
-                className="group relative rounded-xl sm:rounded-2xl bg-white overflow-hidden border border-green-200 shadow-xs hover:shadow-lg transition-all duration-300"
-              >
-                <div className="relative aspect-[4/3] w-full max-h-48 sm:max-h-56 md:max-h-64 bg-gradient-to-br from-green-100 to-green-400 overflow-hidden flex items-center justify-center">
-                  <span className="text-green-700 text-3xl font-bold">NU</span>
-                  <div className="absolute inset-0 bg-gradient-to-t from-slate-950/80 via-transparent to-transparent opacity-80" />
-                  <div className="absolute top-2 left-2 sm:top-3 sm:left-3 bg-green-800/90 text-green-300 text-[8px] sm:text-[10px] font-bold px-1.5 sm:px-2 py-0.5 rounded-md border border-green-400/30">
-                    {item.category}
-                  </div>
-                  <div className="absolute bottom-2 sm:bottom-3 left-2 sm:left-3 right-2 sm:right-3 text-white">
-                    <h3 className="text-[11px] sm:text-xs font-bold line-clamp-1">{item.title}</h3>
-                    <p className="text-justify text-[9px] sm:text-[10px] text-slate-300">{item.date}</p>
-                  </div>
-                </div>
-              </div>
-            ))}
+          <div className="p-5 pt-3">
+            <div className="flex items-center gap-2 text-[11px] text-slate-500 mb-2">
+              <span className="flex items-center gap-1">
+                <Calendar className="w-3 h-3 text-green-600" />
+                <span>{artikel.date}</span>
+              </span>
+              <span>•</span>
+              <span className="flex items-center gap-1">
+                <User className="w-3 h-3 text-green-600" />
+                <span>{artikel.author}</span>
+              </span>
+            </div>
+
+            <h3 className="text-base font-bold text-slate-900 group-hover:text-green-700 transition-colors line-clamp-2 leading-snug mb-2">
+              {artikel.title}
+            </h3>
+
+            <p className="text-justify text-slate-600 text-xs line-clamp-3 leading-relaxed">
+              {artikel.summary}
+            </p>
           </div>
-        </div>
-      </section>
+
+          <div className="px-5 pb-5 pt-0 flex items-center justify-between text-xs font-bold text-green-800 border-t border-green-100 mt-2 pt-3">
+            <span className="flex items-center gap-1 text-slate-500 font-normal text-[11px]">
+              <User className="w-3 h-3" />
+              <span>{artikel.author}</span>
+            </span>
+            <Link href={`/artikel/${artikel.id}`} className="hover:underline flex items-center gap-1">
+              <span>Baca</span>
+              <ArrowRight className="w-3 h-3" />
+            </Link>
+          </div>
+        </article>
+      ))}
+    </div>
+  </div>
+</section>      
 
       {/* 5. Clean CTA Aspirasi Banner */}
       <section className="py-12 sm:py-16 bg-green-900 text-white relative overflow-hidden">
@@ -320,13 +291,13 @@ export default async function HomePage() {
             PCNU Kotabaru siap mendengarkan dan menindaklanjuti masukan dari seluruh warga NU.
           </p>
           <div className="flex justify-center">
-            <a
+            <Link
               href="/kontak"
               className="inline-flex items-center px-8 py-4 bg-green-400 hover:bg-green-300 text-green-950 font-bold rounded-lg transition-colors"
             >
               <Send className="w-4 h-4 mr-1.5" />
               <span>Sampaikan Aspirasi Sekarang</span>
-            </a>
+            </Link>
           </div>
         </div>
       </section>
